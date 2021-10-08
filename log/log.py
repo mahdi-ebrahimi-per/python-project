@@ -1,20 +1,18 @@
-class log():
+import logging
+
+
+class log:
     def __init__(self, filename='app.log'):
         
-        import logging
-
         logging.basicConfig(filename=filename, filemode='a', format='%(asctime)s - %(name)s - %(levelname)s : %(message)s - %(process)d')
 
         self.filename = filename
 
 
     def log (self, levelname, massage):
-
-        import logging
-
         try :
             if levelname == 'error':
-                logging.error(massage)
+                logging.error(massage) #exc_info=True
 
             if levelname == 'warning':
                 logging.warning(massage)
@@ -28,6 +26,9 @@ class log():
             if levelname == 'critical':
                 logging.critical(massage)
 
+            if levelname == 'exception':
+                logging.exception(massage) 
+
         except:
             raise ValueError("levelname is wrong (it must be string)")
 
@@ -38,6 +39,10 @@ class log():
 
 log = log()
 
-log.log("error", "this is massage")
+# log.log('error', 'h')
 
-log.clear_log()
+try :
+    kj + i
+
+except:
+    log.log('exception', "error exception")
